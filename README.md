@@ -17,4 +17,4 @@ The Gossip Project va vous permettre de consulter tous les petits potins de THP,
 
 Enjoy !
 
-https://giphy.com/gifs/the-simpsons-pink-phone-vYME0QCGRJl6g%22%3Evia
+![Alt Text](https://https//media.giphy.com/media/vYME0QCGRJl6g/giphy.gif)
