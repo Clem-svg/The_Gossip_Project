@@ -1,9 +1,9 @@
 require 'faker'
 Faker::Config.locale = :fr
 
+Gossip.destroy_all
 User.destroy_all
 City.destroy_all
-Gossip.destroy_all
 Tag.destroy_all
 PrivateMessage.destroy_all
 JoinTableTagGossip.destroy_all
