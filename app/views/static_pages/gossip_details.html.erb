@@ -1,0 +1,11 @@
+<h1>Gossip <%= params[:id] %></h1>
+
+
+<ul>
+  <li> Auteur : <%= Gossip.find(params[:id]).user.first_name %> </li>
+  <li> Titre : <%= Gossip.find(params[:id]).title %> </li>
+  <li> Contenu : <%= Gossip.find(params[:id]).content %> </li>
+</ul>
+
+<p><a href="../user_details/<%= Gossip.find(params[:id]).user.id %>"> En savoir plus sur l'auteur </a> </p> <br>
+

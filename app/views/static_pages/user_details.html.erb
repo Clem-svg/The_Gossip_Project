@@ -1,0 +1,10 @@
+<h1>Détails sur l auteur</h1>
+
+<ul>
+  <li> Prénom : <%= User.find(params[:id]).first_name %> </li>
+  <li> Nom : <%= User.find(params[:id]).last_name %> </li>
+  <li> Description : <%= User.find(params[:id]).description %> </li>
+  <li> Age : <%= User.find(params[:id]).age %> </li>
+  <li> Email : <%= User.find(params[:id]).email %> </li>
+</ul>
+
