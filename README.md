@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Cette application a été co-créée par Marie, Flavien, Clémentine et Benjamin
 
-Things you may want to cover:
+Avant de lancer l'app, assurez-vous de :
+- d'avoir node.js, yarn et webpacker installés et à jour
+- faire un bundle install
+- faire $rails db:create
+- faire $rails db:migrate
+- faire $rails db:seed
+- faire $rails server
 
-* Ruby version
+Le lien pour afficher notre app dans votre navigateur :
+http://localhost:3000/static_pages/home
 
-* System dependencies
+The Gossip Project va vous permettre de consulter tous les petits potins de THP, à partir de la page d'accueil.
 
-* Configuration
+Enjoy !
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://giphy.com/gifs/the-simpsons-pink-phone-vYME0QCGRJl6g%22%3Evia
