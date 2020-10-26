@@ -17,4 +17,4 @@ The Gossip Project va vous permettre de consulter tous les petits potins de THP,
 
 Enjoy !
 
-![Alt Text](https://https//media.giphy.com/media/vYME0QCGRJl6g/giphy.gif)
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
