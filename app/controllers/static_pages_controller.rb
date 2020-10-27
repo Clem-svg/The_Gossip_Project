@@ -12,8 +12,10 @@ class StaticPagesController < ApplicationController
   end
 
   def gossip_details
+    @goss_id = Gossip.find(params['id'])
   end
 
   def user_details
+    @user = User.find(params['id'])
   end
 end
