@@ -9,6 +9,10 @@ class GossipsController < ApplicationController
   
   def show 
     @gossip = Gossip.find(params[:id])
+    @user = User.all.sample
+    @comment = Comment.new
+    @comment.gossip_id = @gossip.id
+    @comment.user_id = @user.id
   end
 
   def create

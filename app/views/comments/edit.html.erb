@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="text-center p-3 m-3">
+    <h1> Comment n° <%= @comment.id %></h1> 
+    <% if alert %>
+      <div class="alert alert-danger" role="alert">
+        <p><%= alert %></p>
+        <ul class="list-unstyled">
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      
+    <% end %>
+  </div>
+  <%= form_for [@gossip, @comment] do |f| %>
+    <div class="form-group">
+      <label>Content</label>
+      <%= f.text_area :content, class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <button  class="btn btn-secondary" type="submit">Update</button>
+    </div>
+  <% end %>
+  <div class="d-flex">
+    <%= link_to "Delete this comment" , gossip_comment_path(params[:gossip_id], params[:id]), :method => "delete", :class => "btn-custom-delete mx-auto", :data => {:confirm => "are_you_sure"} %>
+  </div>
+</div>

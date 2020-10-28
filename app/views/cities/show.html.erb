@@ -11,23 +11,3 @@
     <p class="lead"> Son magnifique code postal est : <%= @city.zip_code %>.</p>
   </div>
 </div>
-
-
-<div class="row">
-    <% Gossip.all.each_with_index do |gossip, i| %>
-      <div class="card-deck mx-auto text-center">
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Potin <%= gossip.id %></h4>
-          </div>
-          <div class="card-body">
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Auteur: <%= gossip.user.first_name %></li>
-              <li>Titre: <%= gossip.title %></li>
-              <li>Titre: <%= gossip.content %></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
