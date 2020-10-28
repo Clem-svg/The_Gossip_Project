@@ -1,29 +1,27 @@
-<div class="container">
-  <div class="text-center">
-    <h1 class="p-3 m-3">Tu veux bitcher ? Balance un gossip</h1>
-    <% if alert %>
-      <div class="alert alert-danger" role="alert">
-        <p><%= alert %></p>
-        <ul class="list-unstyled">
-          <% @gossip.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-      
+<% if @gossip.errors.any? %>
+<div class="alert alert-danger text-center" role="alert">
+  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+    <% @gossip.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
-  </div>
-    <%= form_tag url_for(action: 'create'), method: "post" do %>
+  </ul>
+</div>
+<% end %>
 
-      <%= label_tag 'Title', name="TTTIIIITRE" %>
-      <%= text_field_tag 'title' %>
-      <br /> <br />
 
-      <%= label_tag 'Content', name="Gossip crousty" %>
-      <%= text_area_tag 'content'%>
-      <br /> <br />
 
-      <%= submit_tag "Créer potin" %>
+</div>
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-    <% end %>
+    <%= label_tag 'Title', name="TTTIIIITRE" %>
+    <%= text_field_tag 'title' %>
+    <br /> <br />
+
+    <%= label_tag 'Content', name="Gossip crousty" %>
+    <%= text_area_tag 'content'%>
+    <br /> <br />
+
+    <%= submit_tag "Créer potin" %>
+  <% end %>
 </div>
