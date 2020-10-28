@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <iframe src="https://giphy.com/embed/vYME0QCGRJl6g" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-simpsons-pink-phone-vYME0QCGRJl6g"></a></p>
+    <p class="lead">Gossip <%=params[:id]%></p>
+
+    <h6 class="font-weight-bold">Auteur: <span class="text-muted"><%= @gossip.user.first_name %></span></h6>
+    <h6 class="font-weight-bold">Ville de l'auteur: <span class="text-muted"><%= @gossip.user.city.name %></span></h6>
+    <%= link_to "En savoir plus sur l'auteur", user_path(@gossip.user.id), class:"btn btn-outline-success"%>
+    <%= link_to "Découvre la ville de l'auteur", city_path(@gossip.user.city), class:"btn btn-outline-info"%>
+    <br><br>
+    <h6 class="font-weight-bold">Titre: <span class="text-muted"><%=  @gossip.title  %></h6>
+    <h6 class="font-weight-bold">Contenu: </h6> <p class="text-secondary"><%= @gossip.content %></p>
+    <%= link_to "Edite cette fake new ici", edit_gossip_path(params[:id]), class:"btn btn-outline-warning"%>
+
+    <%= link_to "Delete gosssip", gossip_path(params[:id]), :class => "btn btn-outline-danger m-4", :method => 'DELETE', :data => {:confirm => 'Are you absolutely sure?'} %>
+
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">The Gossips</h1>
+      <h3>Tu as un gossip à déclarer ?!! &#128064</h3>
+      <p><a class="btn btn-primary btn-lg" href=<%= new_gossip_path %> role="button">Let's bitch here &raquo;</a></p>
+      <br/><br/>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @gossips.each_with_index do |gossip, i| %>
+      <div class="card-deck mx-auto text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Potin <%= gossip.id %></h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Auteur: <%= gossip.user.first_name %></li>
+              <li>Titre: <%= gossip.title %></li>
+            </ul>
+            <%= link_to "Découvre le potin", gossip_path(gossip.id), class: "btn btn-lg btn-block btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

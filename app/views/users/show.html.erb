@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="text-center">
+    <br>
+    <h1> Profil </h1>
+    <br>
+    <!--image-->
+      <div class="avatar mx-auto white">
+        <img src="https://picsum.photos/200" class="rounded-circle">
+      </div>
+    <br>
+
+    <!--text-->
+    <div class="card-body">
+      <h3 class="card-title"><%="#{@user.first_name } #{@user.last_name}"%></h3>
+      <hr>
+      <h6 class="font-weight-bold">Profil: </h6> <p class="text-secondary"><%= @user.description %></p>
+      <h6 class="font-weight-bold">Email: </h6> <p class="text-secondary"><%= @user.email %></p>
+      <h6 class="font-weight-bold">Age: </h6> <p class="text-secondary"><%= @user.age %></p>
+      <h6 class="font-weight-bold">Ville: </h6> <p class="text-secondary"><%= @user.city.name %></p>
+
+      <%= link_to "Découvre cette jolie ville", city_path, class: "btn btn-outline-success" %>
+      
+    </div>
+  </div>
+</div>
