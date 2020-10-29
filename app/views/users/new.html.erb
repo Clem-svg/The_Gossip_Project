@@ -1,0 +1,49 @@
+  <h3>Welcome toi !</h3>
+
+<br>
+
+
+<% if @user.errors.any? %>
+<div class="alert alert-danger text-center" role="alert">
+  <p>Nous n'avons pas réussi à te créer pour la (ou les) raison(s) suivante(s) :</p>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'first_name', name="Prénom" %>
+    <%= text_field_tag 'first_name' %>
+
+    <br /> <br />
+
+    <%= label_tag 'last_name', name="Nom" %>
+    <%= text_field_tag 'last_name' %>
+    <br /> <br />
+
+    <%= label_tag 'age', name="Age" %>
+    <%= text_field_tag 'age' %>
+    <br /> <br />
+
+    <%= label_tag 'city_id', name="Ville" %>
+    <%= text_field_tag 'city_id' %>
+    <br /> <br />
+
+    <%= label_tag 'description', name="Description" %>
+    <%= text_field_tag 'description' %>
+    <br /> <br />
+
+    <%= label_tag 'email', name="Email" %>
+    <%= text_field_tag 'email' %>
+    <br /> <br />
+
+    <%= label_tag 'password', name="Mot de passe" %>
+    <%= text_field_tag 'password' %>
+    <br /> <br />
+
+    <%= submit_tag "S'inscrire" %>
+  <% end %>

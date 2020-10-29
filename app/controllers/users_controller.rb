@@ -8,9 +8,21 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
+
+    @user = User.new(post_params)
+
+    if @user.save
+      redirect_to root_path
+    else
+
+      render :new
+
+    end
+
   end
 
   def edit
@@ -20,5 +32,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-   end
+  end
+
+  private
+
+  def post_params
+    params.permit(:first_name, :last_name, :description, :email, :age, :city_id, :password)
+  end
 end

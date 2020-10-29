@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href=<%=root_path%>>The Gossip Project</a>
@@ -24,6 +24,19 @@
           <a class="nav-item nav-link active" href=<%=root_path%>>Home</a>
           <a class="nav-item nav-link" href=<%=static_pages_team_path%>>Team</a>
           <a class="nav-item nav-link" href=<%=static_pages_contact_path%>>Contact</a>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login / Logout
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% if current_user == nil %>
+                <a class="nav-item nav-link" href=<%=new_user_path%>>S'enregistrer</a>
+                <a class="nav-item nav-link" href=<%=new_session_path%>>S'identifier</a>
+              <%else%>
+                <a class="nav-item nav-link" <%= link_to "Se déconnecter", session_path(session.id), method: :delete %></a>
+              <%end%>
+            </div>
+          </div>
         </div>
       </div>
     </nav>

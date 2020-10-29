@@ -3,6 +3,7 @@ class Gossip < ApplicationRecord
   has_many :JoinTableTagGossips
   has_many :tags, through: :JoinTableTagGossips
   has_many :comments
+  has_many :favorites
 
   validates :title, presence: true, length: { in: 3..14 }
   validates :content, presence: true

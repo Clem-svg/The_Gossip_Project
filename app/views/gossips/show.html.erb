@@ -10,10 +10,21 @@
     <br><br>
     <h6 class="font-weight-bold">Titre: <span class="text-muted"><%=  @gossip.title  %></h6>
     <h6 class="font-weight-bold">Contenu: </h6> <p class="text-secondary"><%= @gossip.content %></p>
+
+
+
+    <% if current_user == @gossip.user %>
     <%= link_to "Edite cette fake new ici", edit_gossip_path(params[:id]), class:"btn btn-outline-warning"%>
-    <%= link_to "Delete gosssip", gossip_path(params[:id]), :class => "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => 'Are you absolutely sure?'} %>
+   <%= link_to "Delete gosssip", gossip_path(params[:id]), :class => "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => 'Sûr ?'} %>
+
+    <% end%>    <%= render partial: 'gossips/form' %>
+
+
+
+
     <br><br>
     <hr/>
+    <%= render partial: 'gossips/formfavorite' %>
     <%= render partial: 'gossips/form' %>
      <%= render partial: 'gossips/comment', collection: @gossip.comments.reverse %>
 

@@ -1,4 +1,6 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+
   def new
     @gossip = Gossip.new
   end
@@ -6,8 +8,8 @@ class GossipsController < ApplicationController
   def index
     @gossips = Gossip.all
   end
-  
-  def show 
+
+  def show
     @gossip = Gossip.find(params[:id])
     @user = User.last
     @comment = Comment.new
@@ -16,11 +18,11 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find_by(id: 11))
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
 
     if @gossip.save
       flash[:notice] = "New gossip Save in DB"
-      redirect_to root_path 
+      redirect_to root_path
     else
       puts "$" * 30
       puts "error message"
@@ -52,4 +54,12 @@ class GossipsController < ApplicationController
   def gossip_params
     params.require(:gossip).permit(:title, :content)
   end
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Il faut s'enregistrer bb"
+      redirect_to new_session_path
+    end
+  end
+
 end

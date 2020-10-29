@@ -8,6 +8,13 @@
     </div>
   </div>
 
+<% if current_user != nil %>
+
+      <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<%else%>
+      <h2>Bienvenue !</h2>
+<%end%>
+
   <div class="row">
     <% @gossips.each_with_index do |gossip, i| %>
       <div class="card-deck mx-auto text-center">

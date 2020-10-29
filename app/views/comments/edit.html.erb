@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-center p-3 m-3">
-    <h1> Comment n° <%= @comment.id %></h1> 
+    <h1> Commentaire n° <%= @comment.id %></h1>
     <% if alert %>
       <div class="alert alert-danger" role="alert">
         <p><%= alert %></p>
@@ -10,7 +10,7 @@
           <% end %>
         </ul>
       </div>
-      
+
     <% end %>
   </div>
   <%= form_for [@gossip, @comment] do |f| %>
@@ -19,10 +19,10 @@
       <%= f.text_area :content, class: 'form-control'%>
     </div>
     <div class="form-group">
-      <button  class="btn btn-secondary" type="submit">Update</button>
+      <button  class="btn btn-secondary" type="submit">Mettre à jour</button>
     </div>
   <% end %>
   <div class="d-flex">
-    <%= link_to "Delete this comment" , gossip_comment_path(params[:gossip_id], params[:id]), :method => "delete", :class => "btn-custom-delete mx-auto", :data => {:confirm => "are_you_sure"} %>
+    <%= link_to "SUPPRIMEEEEERRRRR" , gossip_comment_path(params[:gossip_id], params[:id]), :method => "delete", :class => "btn-custom-delete mx-auto", :data => {:confirm => "are_you_sure"} %>
   </div>
 </div>

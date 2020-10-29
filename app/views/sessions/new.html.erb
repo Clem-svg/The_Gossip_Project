@@ -1,0 +1,24 @@
+  <h3>Welcome toi !</h3>
+
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <%= value %>
+   </div>
+<% end %>
+
+  <br/><br/>
+
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'email', name="Email" %>
+    <%= text_field_tag 'email' %>
+    <br /> <br />
+
+    <%= label_tag 'password', name="Mot de passe" %>
+    <%= text_field_tag 'password' %>
+    <br /> <br />
+
+    <%= submit_tag "Connecte-toi" %>
+  <% end %>
