@@ -17,15 +17,25 @@
     <%= link_to "Edite cette fake new ici", edit_gossip_path(params[:id]), class:"btn btn-outline-warning"%>
    <%= link_to "Delete gosssip", gossip_path(params[:id]), :class => "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => 'Sûr ?'} %>
 
-    <% end%>    <%= render partial: 'gossips/form' %>
+    <% end%>
 
 
 
 
     <br><br>
+
+      <p><%= @gossip.favorites.count %> <%= (@gossip.favorites.count) == 1 ? 'Like' : 'Likes'%></p>
+      <% pre_favorite = @gossip.favorites.find { |favorite| favorite.user_id == current_user.id} %>
+      <% if pre_favorite %>
+       <%= button_to 'Unlike', gossip_favorite_path(@gossip, pre_favorite), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', gossip_favorites_path(@gossip), :method => 'POST' %>
+      <% end %>
+
+
     <hr/>
-    <%= render partial: 'gossips/formfavorite' %>
-    <%= render partial: 'gossips/form' %>
+      <%= render partial: 'gossips/form' %>
+
      <%= render partial: 'gossips/comment', collection: @gossip.comments.reverse %>
 
   </div>
