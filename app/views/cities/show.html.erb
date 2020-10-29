@@ -11,3 +11,15 @@
     <p class="lead"> Son magnifique code postal est : <%= @city.zip_code %>.</p>
   </div>
 </div>
+
+<% @loufoc.each do |user| %>
+  <h2><%= user.first_name%> a écrit ce potin:</h2>
+  <% user.gossips.each do |gossip|%>
+    <div class="card gossip-card m-2" style="width: auto;">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to gossip.title, gossip_path(gossip.id), :class => "new-link"%></h5>
+        <p class="card-text">Contenu : <%= gossip.content%></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

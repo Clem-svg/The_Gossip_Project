@@ -18,7 +18,7 @@
       <h6 class="font-weight-bold">Age: </h6> <p class="text-secondary"><%= @user.age %></p>
       <h6 class="font-weight-bold">Ville: </h6> <p class="text-secondary"><%= @user.city.name %></p>
 
-      <%= link_to "Découvre cette jolie ville", city_path, class: "btn btn-outline-success" %>
+      <%= link_to "Découvre cette jolie ville", city_path(@user.city), class: "btn btn-outline-success" %>
       
     </div>
   </div>

@@ -63,6 +63,10 @@ puts
 puts "JoinTableTagGossip table"
 tp JoinTableTagGossip.all
 
+30.times do
+  Comment.create(content: Faker::Lorem.sentence(word_count: 50 + rand(100)), user: User.all.sample, gossip: Gossip.all.sample )
+end
+
 #Private messages
 10.times do
   PrivateMessage.create(content:Faker::Lorem.sentence,sender: User.all.sample)
