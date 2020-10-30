@@ -23,7 +23,7 @@
 
 
     <br><br>
-
+        <% if current_user %>
       <p><%= @gossip.favorites.count %> <%= (@gossip.favorites.count) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_favorite = @gossip.favorites.find { |favorite| favorite.user_id == current_user.id} %>
       <% if pre_favorite %>
@@ -31,6 +31,7 @@
       <% else %>
         <%= button_to 'Like', gossip_favorites_path(@gossip), :method => 'POST' %>
       <% end %>
+        <% end %>
 
 
     <hr/>
