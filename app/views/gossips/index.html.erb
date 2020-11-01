@@ -3,17 +3,17 @@
     <div class="container">
       <h1 class="display-3">The Gossips</h1>
       <h3>Tu as un gossip à déclarer ?!! &#128064</h3>
-      <p><a class="btn btn-primary btn-lg" href=<%= new_gossip_path %> role="button">Let's bitch here &raquo;</a></p>
+      <p><a class="btn btn-primary btn-lg" href=<%= new_gossip_path %> role="button">Balance un potin &raquo;</a></p>
       <br/><br/>
     </div>
   </div>
 
-<% if current_user != nil %>
-
-      <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
-<%else%>
-      <h2>Bienvenue !</h2>
-<%end%>
+  <% if current_user != nil %>
+    <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %>, voici les potins !</h2>
+  <%else%>
+    <h2>Bienvenue !</h2>
+  <%end%>
+  <br>
 
   <div class="row">
     <% @gossips.each_with_index do |gossip, i| %>
@@ -27,9 +27,8 @@
               <li>Auteur: <%= gossip.user.first_name %></li>
               <li>Titre: <%= gossip.title %></li>
             </ul>
-
-            <p><%= gossip.favorites.count %> <%= (gossip.favorites.count) == 1 ? 'Like' : 'Likes'%></p>
-
+            <p><%= gossip.comments.count %> <%= (gossip.comments.count) == 1 ? 'Comment' : 'Comments'%></p>
+            <p><%= gossip.favorites.count %> <%= (gossip.favorites.count) == 1 ? '👍' : '👍'%></p>
 
             <%= link_to "Découvre le potin", gossip_path(gossip.id), class: "btn btn-lg btn-block btn-outline-primary" %>
           </div>

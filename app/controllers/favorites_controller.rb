@@ -17,14 +17,12 @@ class FavoritesController < ApplicationController
     else
       @favorite.destroy
     end
-
     redirect_back(fallback_location: root_path)
-
   end
 
   def find_favorite
     @favorite = @gossip.favorites.find(params[:id])
- end
+  end
 
   private
   def find_gossip
@@ -35,5 +33,4 @@ class FavoritesController < ApplicationController
     Favorite.where(user_id: current_user.id, gossip_id:
     params[:gossip_id]).exists?
   end
-
 end

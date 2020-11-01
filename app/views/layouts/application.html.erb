@@ -15,32 +15,30 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href=<%=root_path%>>The Gossip Project</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href=<%=root_path%>>Home</a>
-          <a class="nav-item nav-link" href=<%=static_pages_team_path%>>Team</a>
-          <a class="nav-item nav-link" href=<%=static_pages_contact_path%>>Contact</a>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login / Logout
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <% if current_user == nil %>
-                <a class="nav-item nav-link" href=<%=new_user_path%>>S'enregistrer</a>
-                <a class="nav-item nav-link" href=<%=new_session_path%>>S'identifier</a>
-              <%else%>
-                <a class="nav-item nav-link" <%= link_to "Se déconnecter", session_path(session.id), method: :delete %></a>
-              <%end%>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+          <%= link_to "The Gossip Project", root_path, :class => "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
 
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <%= link_to "Team", static_pages_team_path, :class => "nav-item nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Contact", static_pages_contact_path, :class => "nav-item nav-link" %>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <% if current_user %>
+                  <%= link_to "Se déconnecter", session_path(session.id), :class => "btn btn-outline-danger", :method => 'DELETE' %>
+                <% else %>
+                  <%= link_to "Se connecter", new_session_path, :class => "nav-item nav-link" %>
+                  <%= link_to "S'enregister", new_user_path, :class => "nav-item nav-link" %>
+                <% end %>
+            </form>
+          </div>
+      </nav>
     <%= yield %>
   </body>
 </html>

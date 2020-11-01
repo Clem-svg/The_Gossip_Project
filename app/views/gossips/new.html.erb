@@ -1,27 +1,28 @@
-  <h3>Poste un potin crousty cheesy &#127798;</h3>
-
 <% if @gossip.errors.any? %>
-<div class="alert alert-danger text-center" role="alert">
-  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
-  <ul>
+  <div class="alert alert-danger text-center" role="alert">
+    <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
     <% @gossip.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+      <li><%= message %></li>
     <% end %>
-  </ul>
-</div>
+    </ul>
+  </div>
 <% end %>
 
-
+<div class="container text-center">
+  <br> <br>
+  <h1>&#127798; Créer un potin crousty &#127798;</h1>
   <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-    <%= label_tag 'Title', name="Titre" %>
-    <%= text_field_tag 'title' %>
+    <%= label_tag 'Titre' %>
+    <%= text_field_tag 'title', @gossip.title %>
+    <br> <br>
 
-    <br /> <br />
-
-    <%= label_tag 'Content', name="Content" %>
-    <%= text_area_tag 'content'%>
-    <br /> <br />
+    <%= label_tag 'Contenu' %>
+    <%= text_area_tag 'content', @gossip.content %>  
+    <br> <br>
 
     <%= submit_tag "Créer potin" %>
   <% end %>
+</div>
+

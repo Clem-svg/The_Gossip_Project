@@ -24,9 +24,6 @@ class GossipsController < ApplicationController
       flash[:notice] = "New gossip Save in DB"
       redirect_to root_path
     else
-      puts "$" * 30
-      puts "error message"
-      puts "$" * 30
       render :new
     end
   end

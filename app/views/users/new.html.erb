@@ -1,8 +1,3 @@
-  <h3>Welcome toi !</h3>
-
-<br>
-
-
 <% if @user.errors.any? %>
 <div class="alert alert-danger text-center" role="alert">
   <p>Nous n'avons pas réussi à te créer pour la (ou les) raison(s) suivante(s) :</p>
@@ -14,36 +9,39 @@
 </div>
 <% end %>
 
-  <%= form_tag url_for(action: 'create'), method: "post" do %>
+<!-- Default form login -->
+<div class="mx-auto pt-4" style="width: 400px">
+<%= form_tag url_for(action: 'create'), method: "post", class: "text-center border border-light p-5" do %>
 
-    <%= label_tag 'first_name', name="Prénom" %>
-    <%= text_field_tag 'first_name' %>
+    <p class="h4 mb-4">Créer un compte</p>
 
-    <br /> <br />
+    <!-- FirstName -->
+    <%= text_field_tag 'first_name', nil, type: "first_name", id: "defaultLoginFormFirstName", class: "form-control mb-4", placeholder: "Prénom" %>
 
-    <%= label_tag 'last_name', name="Nom" %>
-    <%= text_field_tag 'last_name' %>
-    <br /> <br />
+    <!-- LastName -->
+    <%= text_field_tag 'last_name', nil, type: "last_name", id: "defaultLoginFormLastName", class: "form-control mb-4", placeholder: "Nom" %>
 
-    <%= label_tag 'age', name="Age" %>
-    <%= text_field_tag 'age' %>
-    <br /> <br />
+    <!-- Description -->
+    <%= text_area_tag 'description', nil, type: "description", id: "defaultLoginFormDescription", class: "form-control mb-4", placeholder: "Qui es-tu ?" %>
 
-    <%= label_tag 'city_id', name="Ville" %>
-    <%= text_field_tag 'city_id' %>
-    <br /> <br />
+    <!-- City -->
+    <%= text_area_tag 'city', nil, type: "description", id: "defaultLoginFormCity", class: "form-control mb-4", placeholder: "Où vis-tu ?" %>
 
-    <%= label_tag 'description', name="Description" %>
-    <%= text_field_tag 'description' %>
-    <br /> <br />
+    <!-- Age -->
+    <%= number_field_tag 'age', nil, in: 18...99, id: "defaultLoginFormAge", class: "form-control mb-4", placeholder: "Ton âge ?" %>
 
-    <%= label_tag 'email', name="Email" %>
-    <%= text_field_tag 'email' %>
-    <br /> <br />
+    <!-- Email -->
+    <%= text_field_tag 'email', nil, type: "email", id: "defaultLoginFormEmail", class: "form-control mb-4", placeholder: "E-mail" %>
 
-    <%= label_tag 'password', name="Mot de passe" %>
-    <%= text_field_tag 'password' %>
-    <br /> <br />
+    <!-- Password -->
+    <%= password_field_tag 'password', nil, type: "password", id: "defaultLoginFormPassword", class: "form-control mb-4", placeholder: "Password" %>
 
-    <%= submit_tag "S'inscrire" %>
-  <% end %>
+    <!-- Sign up button -->
+    <%= submit_tag "Sign up", class: "btn btn-info btn-block my-4", type: "submit" %>
+
+    <!-- Register -->
+    <p>Déjà inscrit ?
+        <%= link_to 'Se connecter', new_session_path %>
+    </p>
+
+<% end %>

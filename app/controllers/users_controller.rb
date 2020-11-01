@@ -12,18 +12,17 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(post_params)
+    @user.city = City.all.sample
 
     if @user.save
+      flash[:notice] = "Welcome #{@user.first_name}, your account has been created!"
+      log_in(@user)
       redirect_to root_path
     else
-
-      render :new
-
+      render '/users/new'
     end
-
-  end
+  end 
 
   def edit
   end

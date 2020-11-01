@@ -3,6 +3,7 @@
     <iframe src="https://giphy.com/embed/vYME0QCGRJl6g" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-simpsons-pink-phone-vYME0QCGRJl6g"></a></p>
     <p class="lead">Gossip <%=params[:id]%></p>
 
+    <!-- GOSSIP -->
     <h6 class="font-weight-bold">Auteur: <span class="text-muted"><%= @gossip.user.first_name %></span></h6>
     <h6 class="font-weight-bold">Ville de l'auteur: <span class="text-muted"><%= @gossip.user.city.name %></span></h6>
     <%= link_to "En savoir plus sur l'auteur", user_path(@gossip.user.id), class:"btn btn-outline-success"%>
@@ -11,33 +12,28 @@
     <h6 class="font-weight-bold">Titre: <span class="text-muted"><%=  @gossip.title  %></h6>
     <h6 class="font-weight-bold">Contenu: </h6> <p class="text-secondary"><%= @gossip.content %></p>
 
-
-
+    <!-- EDITER/SUPPR GOSSIP -->
     <% if current_user == @gossip.user %>
     <%= link_to "Edite cette fake new ici", edit_gossip_path(params[:id]), class:"btn btn-outline-warning"%>
    <%= link_to "Delete gosssip", gossip_path(params[:id]), :class => "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => 'Sûr ?'} %>
-
     <% end%>
 
-
-
-
     <br><br>
-        <% if current_user %>
+    <!-- LIKE / UNLIKE -->
+    <% if current_user %>
       <p><%= @gossip.favorites.count %> <%= (@gossip.favorites.count) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_favorite = @gossip.favorites.find { |favorite| favorite.user_id == current_user.id} %>
       <% if pre_favorite %>
-       <%= button_to 'Unlike', gossip_favorite_path(@gossip, pre_favorite), method: :delete %>
+        <%= button_to '👎', gossip_favorite_path(@gossip, pre_favorite), method: :delete %>
       <% else %>
-        <%= button_to 'Like', gossip_favorites_path(@gossip), :method => 'POST' %>
+          <%= button_to '👍', gossip_favorites_path(@gossip), :method => 'POST' %>
       <% end %>
-        <% end %>
-
-
+    <% end %>
+    
+    <!-- COMMENTS -->
     <hr/>
-      <%= render partial: 'gossips/form' %>
-
-     <%= render partial: 'gossips/comment', collection: @gossip.comments.reverse %>
-
+    <h5 class="p-2"> <%= @gossip.comments.count %> comment(s) </h2>
+    <%= render partial: 'gossips/form' %>
+    <%= render partial: 'gossips/comment', collection: @gossip.comments.reverse %>
   </div>
 </div>
