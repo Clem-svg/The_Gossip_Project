@@ -5,7 +5,9 @@
     <p><%= comment.content %></p>
     <div class="d-flex">
     <button class="btn btn-outline-info mx-auto">
+    <% if is_author(comment.user)%>
       <%= link_to "Editer le comm'", edit_gossip_comment_path(@gossip.id, comment.id)%>
+    <%end%>  
     </button>
     </div>
   </div>

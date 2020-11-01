@@ -1,7 +1,5 @@
 class User < ApplicationRecord
   has_secure_password
-
-
   belongs_to :city
 
   has_many :LierPrivateMessageUsers
@@ -17,5 +15,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
   validates :age, presence: true
 
-
+  def remember(remember_token)
+    remember_digest = BCrypt::Password.create(remember_token)
+    self.update(remember_digest: remember_digest)
+  end
 end

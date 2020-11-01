@@ -11,20 +11,20 @@
         </ul>
       </div>
     <% end %>
-
   </div>
+
+
   <%= form_for [@gossip, @comment] do |f| %>
     <div class="form-group">
       <label>Contenu</label>
       <%= f.text_area :content, class: 'form-control'%>
     </div>
 
-
     <div class="form-group">
       <button  class="btn btn-secondary" type="submit">Mettre à jour</button>
     </div>
   <% end %>
-  <div class="d-flex">
-    <%= link_to "Supprimer ce commentaire" , gossip_comment_path(params[:gossip_id], params[:id]), :method => "delete", :class => "btn-custom-delete mx-auto", :data => {:confirm => "are_you_sure"} %>
-  </div>
+    <div class="d-flex">
+      <%= link_to "Supprimer ce commentaire" , gossip_comment_path(params[:gossip_id], params[:id]), :method => "delete", :class => "btn-custom-delete mx-auto", :data => {:confirm => "are_you_sure"} %>
+    </div>
 </div>

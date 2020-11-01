@@ -1,42 +1,52 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :new]
+
   def create
-    @user = User.first
     @comment = Comment.new(post_params)
     @comment.gossip_id = params[:gossip_id]
-    @comment.user_id = @user.id
+    @comment.user = current_user
 
     if @comment.save
       flash[:notice] = "New comment Save in DB"
       redirect_to gossip_path(@comment.gossip_id)
     else
-      puts @comment.errors.messages
-      puts "error comments"
+      @comment.errors.messages
     end
   end
 
   def edit
     @comment = Comment.find(params[:id])
-    @gossip = Gossip.find(params[:gossip_id])
+    if is_author(@comment.user)
+      @gossip = Gossip.find(@comment.gossip.id)
+    else
+      flash[:alert] = "Nop !"
+      render :edit
+    end
   end
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update(post_params)
-      flash[:notice] = "Comments updated in DB"
-      redirect_to gossip_path(params[:gossip_id])
+    if is_author(@comment.user)
+      if @comment.update(comment_params)
+        flash[:notice] = "All good, your comment has been edited bro !"
+        redirect_to gossip_path(@comment.gossip)
+      else
+        render :edit
+      end
     else
-      flash.now[:alert] = "We cannot updated this comments for this reason(s) :"
+      flash[:alert] = "Nop !"
       render :edit
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.destroy
-      flash[:notice] = "Comment deleted in DB"
-      redirect_to gossip_path(params[:gossip_id]) 
-    else 
-      flash.now[:alert] = "We cannot deleted this comment for this reason(s) :"
+    if is_author(@comment.user)
+      @comment.destroy
+      flash[:notice] = "All good, your gossip has been deleted bro !"
+      redirect_to gossip_path(@comment.gossip)
+    else
+      flash[:alert] = "Nop !"
       render :edit
     end
   end
@@ -44,5 +54,12 @@ class CommentsController < ApplicationController
   private
   def post_params
     params.require(:comment).permit(:content)
+  end
+
+  def authenticate_user
+    unless current_user
+      flash[:alert] = "You need to login in order to see all gossips !"
+      redirect_to new_session_path
+    end
   end
 end
