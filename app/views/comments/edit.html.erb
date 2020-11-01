@@ -11,13 +11,15 @@
         </ul>
       </div>
     <% end %>
-    
+
   </div>
   <%= form_for [@gossip, @comment] do |f| %>
     <div class="form-group">
       <label>Contenu</label>
       <%= f.text_area :content, class: 'form-control'%>
     </div>
+
+
     <div class="form-group">
       <button  class="btn btn-secondary" type="submit">Mettre à jour</button>
     </div>

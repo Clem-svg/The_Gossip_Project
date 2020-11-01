@@ -25,8 +25,9 @@
     <%= text_area_tag 'description', nil, type: "description", id: "defaultLoginFormDescription", class: "form-control mb-4", placeholder: "Qui es-tu ?" %>
 
     <!-- City -->
-    <%=select_tag "city_id", options_from_collection_for_select(City.all, "id", "name"), class:"form-control", required:"required"%>
-    <br>
+    <%= text_field_tag :city, params[:city], class: "form-control mb-4", placeholder: "De quelle ville es-tu ?" %>
+
+    <%= text_field_tag :zipcode, params[:zipcode], class: "form-control mb-4", placeholder: "Et son code postal ?"%>
     <!-- Age -->
     <%= number_field_tag 'age', nil, in: 18...99, id: "defaultLoginFormAge", class: "form-control mb-4", placeholder: "Ton âge ?" %>
 

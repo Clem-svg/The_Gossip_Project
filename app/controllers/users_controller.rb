@@ -12,8 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(post_params)
-    @user.city = City.all.sample
+    city = City.find_or_create_by(name: params[:city], zip_code: params[:zipcode])
+    @user = User.new(first_name: params[:first_name], last_name: params[:last_name],
+       email: params[:email], description: params[:description], age: params[:age],
+       password: params[:password], password_confirmation: params[:password_confirmation],
+      city: city)
 
     if @user.save
       flash[:notice] = "Welcome #{@user.first_name}, your account has been created!"
@@ -22,7 +25,7 @@ class UsersController < ApplicationController
     else
       render '/users/new'
     end
-  end 
+  end
 
   def edit
   end
